@@ -31,7 +31,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "check":
-            print(json.dumps(evaluate(read(args.snapshot), args.k), ensure_ascii=False, indent=2))
+            print(json.dumps(evaluate(read(args.snapshot), args.k), ensure_ascii=True, indent=2))
             return 0
         inputs = {Path(args.baseline).resolve(), Path(args.candidate).resolve()}
         outputs = [Path(p).resolve() for p in (args.html, args.json_path) if p]

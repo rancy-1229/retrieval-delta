@@ -1,5 +1,6 @@
 import copy
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -125,8 +126,8 @@ class CLI(unittest.TestCase):
             r = self.run_cli('diff', 'examples/baseline.json', 'examples/candidate.json',
                              '--html', report, '--json', data)
             self.assertEqual(r.returncode, 1, r.stderr)
-            self.assertEqual(json.loads(data.read_text())['regressions'], 2)
-            self.assertIn('not refundable', report.read_text())
+            self.assertEqual(json.loads(data.read_text(encoding="utf-8"))['regressions'], 2)
+            self.assertIn('not refundable', report.read_text(encoding="utf-8"))
             r = self.run_cli('diff', 'examples/baseline.json', 'examples/fixed.json')
             self.assertEqual(r.returncode, 0, r.stderr)
 
@@ -139,7 +140,15 @@ class CLI(unittest.TestCase):
             result = self.run_cli('diff', Path(directory) / 'sentences.json',
                                   Path(directory) / 'fixed.json', '--k', '1', '--json', output)
             self.assertEqual(result.returncode, 1, result.stderr)
-            self.assertEqual(json.loads(output.read_text())['regressions'], 3)
+            self.assertEqual(json.loads(output.read_text(encoding="utf-8"))['regressions'], 3)
+
+    def test_check_json_with_legacy_stdout_encoding(self):
+        result = subprocess.run([sys.executable, '-m', 'evidiff', 'check',
+                                 'examples/baseline.json'], cwd=ROOT, capture_output=True,
+                                env={**os.environ, 'PYTHONIOENCODING': 'cp1252'})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        parsed = json.loads(result.stdout)
+        self.assertEqual(parsed['cases'][3]['question'], '中文支持什么时候在线？')
 
     def test_malformed_json_exits_two(self):
         with tempfile.TemporaryDirectory() as directory:
