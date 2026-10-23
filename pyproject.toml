@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retrieval-delta"
+version = "0.1.0"
+description = "Find the evidence your retriever lost. Offline RAG regression diffs."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/rancy-1229/retrieval-delta"
+Issues = "https://github.com/rancy-1229/retrieval-delta/issues"
+
+[project.scripts]
+retrieval-delta = "evidiff.cli:main"
+evidiff = "evidiff.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["evidiff*"]

@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "documents": {
+    "returns": {
+      "text": "Returns policy\nStandard items can be returned within 30 days.\nCustom-made items are not refundable.\nDamaged items must be reported within 48 hours.\n"
+    },
+    "shipping": {
+      "text": "Delivery guide\nDomestic delivery takes 3–5 business days.\nInternational delivery takes 10–15 business days.\nTracking is emailed after dispatch.\n"
+    },
+    "support": {
+      "text": "支持时间\n工作日 09:00–18:00 提供中文支持。\n紧急故障请拨打值班电话。\n"
+    }
+  },
+  "cases": [
+    {
+      "id": "custom-refund",
+      "question": "Can I return a custom-made item?",
+      "evidence": [
+        {
+          "document": "returns",
+          "start": 62,
+          "end": 99,
+          "text": "Custom-made items are not refundable."
+        }
+      ],
+      "retrieved": [
+        {
+          "document": "returns",
+          "start": 62,
+          "end": 99,
+          "text": "Custom-made items are not refundable."
+        }
+      ]
+    },
+    {
+      "id": "damage-window",
+      "question": "How soon must I report damage?",
+      "evidence": [
+        {
+          "document": "returns",
+          "start": 100,
+          "end": 147,
+          "text": "Damaged items must be reported within 48 hours."
+        }
+      ],
+      "retrieved": [
+        {
+          "document": "returns",
+          "start": 100,
+          "end": 147,
+          "text": "Damaged items must be reported within 48 hours."
+        }
+      ]
+    },
+    {
+      "id": "international-delivery",
+      "question": "How long does international delivery take?",
+      "evidence": [
+        {
+          "document": "shipping",
+          "start": 58,
+          "end": 107,
+          "text": "International delivery takes 10–15 business days."
+        }
+      ],
+      "retrieved": [
+        {
+          "document": "shipping",
+          "start": 58,
+          "end": 107,
+          "text": "International delivery takes 10–15 business days."
+        }
+      ]
+    },
+    {
+      "id": "support-hours",
+      "question": "中文支持什么时候在线？",
+      "evidence": [
+        {
+          "document": "support",
+          "start": 5,
+          "end": 28,
+          "text": "工作日 09:00–18:00 提供中文支持。"
+        }
+      ],
+      "retrieved": [
+        {
+          "document": "support",
+          "start": 5,
+          "end": 28,
+          "text": "工作日 09:00–18:00 提供中文支持。"
+        }
+      ]
+    }
+  ]
+}
