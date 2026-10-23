@@ -139,7 +139,8 @@ Exit codes: **0** no regression; **1** regression; **2** invalid input or I/O er
 Reports contain source excerpts: review them before publishing CI artifacts.
 
 The repository's test workflow covers Python 3.10/3.12/3.13 on Linux, Windows,
-and macOS when run on GitHub; only the local environment has been verified so far.
+and macOS. See the [Actions results](https://github.com/rancy-1229/retrieval-delta/actions/workflows/test.yml)
+for the status of each revision.
 
 ## Why another retrieval tool?
 
